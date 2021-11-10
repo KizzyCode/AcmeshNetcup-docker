@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  certbot-netcup:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+        - ./:/var/certs:rw
+    environment:
+      # Configure netcup API login
+      NETCUP_USER: xxxxx
+      NETCUP_API_KEYID: your-api-key-id
+      
+      # Configure CA and domains
+      DIRECTORY: https://acme-v02.api.letsencrypt.org/directory
+      DOMAINS: domain1.example.com,domain2.example.com,...
