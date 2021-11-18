@@ -53,4 +53,5 @@ cat < /var/certs/tls.crt.pem >> /var/certs/tls.haproxy.pem
 
 
 # All done
+echo "acmesh.done" > /var/certs/acmesh.done
 echo "*> Done."
