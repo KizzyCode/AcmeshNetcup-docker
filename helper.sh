@@ -5,9 +5,15 @@ set -eu
 # Read netcup API secret if not set
 NETCUP_API_SECRET="${NETCUP_API_SECRET:-}"
 if test -z "$NETCUP_API_SECRET"; then
-    printf "?> Enter the netcup API secret: "
-    read -s NETCUP_API_SECRET
-    echo
+    # Loop until the secret is entered (necessary if the user attaches to the container later)
+    while true; do
+        printf "?> Paste the netcup API secret: "
+        if read -t 5 -s NETCUP_API_SECRET; then
+            echo
+            break
+        fi
+        echo
+    done
 fi
 
 
