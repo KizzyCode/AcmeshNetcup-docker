@@ -40,7 +40,7 @@ done
 # Request cerfificate
 echo "*> Issuing certificates for $DOMAINS..."
 acme.sh --issue \
-    --keylength ec-384 \
+    --keylength 4096 \
     --server "$DIRECTORY" \
     --dnssleep 900 \
     --dns dns_netcup \
@@ -50,7 +50,6 @@ acme.sh --issue \
 # Export the certificate
 echo "*> Exporting certificate and key..."
 acme.sh --install-cert \
-    --ecc \
     --key-file /var/certs/tls.key.pem \
     --fullchain-file /var/certs/tls.crt.pem \
     $DOMAIN_STRING
