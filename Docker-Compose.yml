@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 services:
   certbot-netcup:
     build:
@@ -10,6 +10,7 @@ services:
       # Configure netcup API login
       NETCUP_USER: xxxxx
       NETCUP_API_KEYID: your-api-key-id
+      # NETCUP_API_SECRET: your-api-secret-but-better-export-this-external-instead-of-writing-it-into-a-compose-file
       
       # Configure CA and domains
       DIRECTORY: https://acme-v02.api.letsencrypt.org/directory
