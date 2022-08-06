@@ -27,22 +27,21 @@ jobs:
         run: |
           docker login --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}" "${{ env.REGISTRY }}"
       
-      - name: Build the Docker image for linux/amd64
+      - name: Build and push the Docker image for linux/amd64
         run: |
           docker buildx build --file="${{ env.DOCKERFILE }}" --tag="${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}" \
             --platform=linux/amd64 .
-      
-      - name: Build the Docker image for linux/arm64
+          docker push "${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}"
+          
+      - name: Build and push the Docker image for linux/arm64
         run: |
           docker buildx build --file="${{ env.DOCKERFILE }}" --tag="${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}" \
             --platform=linux/arm64 .
+          docker push "${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}"
       
-      - name: Build the Docker image for linux/386
+      - name: Build and push the Docker image for linux/386
         run: |
           docker buildx build --file="${{ env.DOCKERFILE }}" --tag="${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}" \
             --platform=linux/386 .
-
-      - name: Push the Docker image
-        run: |
           docker push "${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}"
       
